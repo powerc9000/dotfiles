@@ -9,10 +9,9 @@ set clipboard=unnamedplus
 set clipboard+=unnamedplus
 set laststatus=2
 " let Vundle manage Vundle, required
-let g:airline_theme='hybrid'
-let g:airline_powerline_fonts = 1
 set noshowmode
 set relativenumber
+set autoindent
 nnoremap p "+p
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
@@ -46,6 +45,9 @@ Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'Canop/patine'
 Plugin 'owickstrom/vim-colors-paramount'
 Plugin 'robertmeta/nofrils'
+Plugin 'scrooloose/syntastic'
+Plugin 'itchyny/lightline.vim'
+Plugin 'scrooloose/nerdtree'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 " To ignore plugin indent changes, instead use:
@@ -80,6 +82,7 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 map <D-P> <C-P>
 map <D-p> <C-p>
+map <C-f> :NERDTreeToggle<CR>
 
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
@@ -104,12 +107,8 @@ autocmd Filetype javascript.jsx setlocal ts=2 sts=2 sw=2
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
 
 " On pressing tab, insert 2 spaces
-set expandtab
 " show existing tab with 2 spaces width
-set tabstop=2
-set softtabstop=2
 " when indenting with '>', use 2 spaces width
-set shiftwidth=2
 let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 autocmd TabEnter * if expand("%:p:h") !~ '^/tmp' | silent! lcd %:p:h | endif
 
@@ -117,3 +116,26 @@ autocmd TabEnter * if expand("%:p:h") !~ '^/tmp' | silent! lcd %:p:h | endif
 filetype plugin indent on    " required
 
 set colorcolumn=100
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_javascript_checkers = ['eslint']
+
+let g:lightline = {'colorscheme': 'landscape', 'component_function': {'filename': 'LightlineFilename'}}
+
+function! LightlineFilename()
+  let filename = expand('%:t') !=# '' ? expand('%:F') : '[No Name]'
+  let modified = &modified ? ' +' : ''
+  return filename . modified
+endfunction
+
+set noshowmode
+set exrc
+set secure
+
