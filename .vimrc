@@ -1,4 +1,4 @@
-set nocompatible              " be iMproved, required
+set nocompatible              " be iMproved, required               
 filetype off 
 " required
 set backspace=2
@@ -6,13 +6,17 @@ set t_Co=256
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 set clipboard=unnamedplus
-set clipboard+=unnamedplus
+set clipboard+=unnamed
 set laststatus=2
+vnoremap y "+y
+nnoremap p "+p
+nnoremap y "+y
+vnoremap d "+d
+nnoremap d "+d
 " let Vundle manage Vundle, required
 set noshowmode
 set relativenumber
 set autoindent
-nnoremap p "+p
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
@@ -48,10 +52,11 @@ Plugin 'robertmeta/nofrils'
 Plugin 'scrooloose/syntastic'
 Plugin 'itchyny/lightline.vim'
 Plugin 'scrooloose/nerdtree'
+Plugin 'roman/golden-ratio'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 " To ignore plugin indent changes, instead use:
-"filetype plugin on
+" filetype plugin on
 "
 " Brief help
 " :pLUGINlIST       - LISTS CONFIGURED PLUGINs
@@ -63,7 +68,7 @@ call vundle#end()            " required
 " Put your non-Plugin stuff after this line
 
 set number
-set guifont=Fira\ Code:h11
+set guifont=Source\ Code\ Pro\ Regular\ 11
 set cursorline
 
 if (has("termguicolors"))
@@ -72,7 +77,7 @@ endif
 
 set background=dark
 
-colorscheme dracula
+colorscheme fairyfloss
 let g:nofrils_heavylinenumbers=1 
 let g:nofrils_strbackgrounds=1 
 let g:nofrils_heavycomments=1 
@@ -88,8 +93,12 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclu
 
 set guioptions-=L
 set guioptions-=r
+set guioptions-=m
+set guioptions-=T
 set incsearch
 set clipboard=unnamed
+
+au GUIEnter * simalt ~x
 
 set noerrorbells visualbell t_vb=
 if has('autocmd')
@@ -135,7 +144,18 @@ function! LightlineFilename()
   return filename . modified
 endfunction
 
+set ttimeout
+set timeoutlen=0
+set ttimeoutlen=0
+
 set noshowmode
 set exrc
 set secure
+set wildmenu
+set wildmode=full
+set path+=**
+
+if has('gui_running')
+    set lines=999 columns=999
+endif
 

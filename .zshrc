@@ -1,7 +1,7 @@
 ## If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/claymurray/.oh-my-zsh
+export ZSH=/home/clay/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -59,6 +59,9 @@ ZSH_THEME="gallois"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
+  docker
+  zsh-autosuggestions
+  zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -100,12 +103,12 @@ alias tmux="TERM=screen-256color-bce tmux"
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh  # This loads NV
 export PATH="$PATH:$HOME/.rvm/bin"
-export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/local/bin:~/.local/bin:$PATH"
 
 fpath=(~/.zsh/completion $fpath)
 autoload -Uz compinit && compinit -i
 
-alias mvim=/Applications/MacVim.app/Contents/bin/mvim
+alias mvim=/usr/bin/gvim
 alias garbo="open https://garb.signin.aws.amazon.com/console"
 
 e(){ echo $@; mvim --remote-tab-silent $@}
@@ -211,11 +214,11 @@ api(){
 }
 
 emacs(){
-  /Applications/Emacs.app/Contents/MacOS/bin/emacsclient -n -e "(if (> (length (frame-list)) 1) ‘t)" 2> /dev/null | grep t &> /dev/null
+  /usr/bin/emacsclient -n -e "(if (> (length (frame-list)) 1) ‘t)" 2> /dev/null | grep t &> /dev/null
   if [ "$?" -eq "1" ]; then
-    /Applications/Emacs.app/Contents/MacOS/bin/emacsclient -a '' -nqc "$@" &> /dev/null
+    /usr/bin/emacsclient -a '' -nqc "$@" &> /dev/null
   else
-    /Applications/Emacs.app/Contents/MacOS/bin/emacsclient -nq "$@" &> /dev/null
+    /usr/bin/emacsclient -nq "$@" &> /dev/null
   fi
 }
 
