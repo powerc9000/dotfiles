@@ -1,0 +1,4 @@
+[
+	{ "command": "travel_to_pane", "args": {"direction": "right"}, "keys": ["ctrl+w", "l"]},
+	{ "command": "travel_to_pane", "args": {"direction": "left"}, "keys": ["ctrl+w", "h"] }
+]
