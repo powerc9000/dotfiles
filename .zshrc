@@ -1,7 +1,7 @@
 ## If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 # Path to your oh-my-zsh installation.
-export ZSH=/home/clay/.oh-my-zsh
+export ZSH=/Users/acab/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -96,19 +96,19 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias tmux="TERM=screen-256color-bce tmux"
+alias mvim="/Applications/MacVim.app/Contents/bin/mvim"
 
 # added by travis gem
-[ -f /Users/claym/.travis/travis.sh ] && source /Users/claym/.travis/travis.sh
+[ -f /Users/acab/.travis/travis.sh ] && source /Users/acab/.travis/travis.sh
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh  # This loads NV
 export PATH="$PATH:$HOME/.rvm/bin"
-export PATH="/usr/local/bin:~/.local/bin:$PATH"
+export PATH="/usr/local/bin:$HOME/.local/bin:$PATH"
 
 fpath=(~/.zsh/completion $fpath)
 autoload -Uz compinit && compinit -i
 
-alias mvim=/usr/bin/gvim
 alias garbo="open https://garb.signin.aws.amazon.com/console"
 
 e(){ echo $@; mvim --remote-tab-silent $@}
@@ -223,8 +223,9 @@ emacs(){
 }
 
 # added by travis gem
-[ -f /Users/claymurray/.travis/travis.sh ] && source /Users/claymurray/.travis/travis.sh
+[ -f /Users/acab/.travis/travis.sh ] && source /Users/acab/.travis/travis.sh
 
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
 
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
